@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fpm/views/ruta.dart';
 import 'package:http/http.dart' as http;
 
-
+//probando el git del repositorio
 class InfoNodos extends StatefulWidget {
   
   final String nodo;
