@@ -1,6 +1,6 @@
 class Rutas{
 
-  String rutaIpv4 = "192.168.20.35:3000";
+  String rutaIpv4 = "ec2-18-191-31-92.us-east-2.compute.amazonaws.com:3000";
 
   Rutas();
 

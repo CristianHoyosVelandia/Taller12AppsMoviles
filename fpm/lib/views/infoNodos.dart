@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fpm/views/ruta.dart';
+import 'package:fpm/model/ruta.dart';
 import 'package:http/http.dart' as http;
 
 //probando el git del repositorio
@@ -47,20 +47,22 @@ class _InfoNodosState extends State<InfoNodos> {
         _lista.add(
           Nodos(
             item['idnodo'], 
-            item['Temperatura'], 
-            item['Humedad'], 
-            item['IndiceCalor'], 
-            item['fecha']));
+            item['voltaje'], 
+            item['corriente'], 
+            item['pactiva'], 
+            item['eactiva'],
+            item['horafecha']));
         }
         else{
           if(widget.nodo==item['idnodo'].toString()){
             _lista.add(
               Nodos(
                 item['idnodo'], 
-                item['Temperatura'], 
-                item['Humedad'], 
-                item['IndiceCalor'], 
-                item['fecha']
+                item['voltaje'], 
+                item['corriente'], 
+                item['pactiva'], 
+                item['eactiva'],
+                item['horafecha']
               )
             );
           }
@@ -152,39 +154,48 @@ class _InfoNodosState extends State<InfoNodos> {
               fit: BoxFit.cover
             )
           ),
+          
           child: FutureBuilder(
 
             future: _listaNodos,
             builder: (context, AsyncSnapshot snapshot){
               if(snapshot.hasData){
                 // print(snapshot.data);
-                return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: DataTable(
-                            dividerThickness: 2,
-                            dataRowHeight: 50,
-                            headingRowHeight: 50,
-                            sortColumnIndex: 0,
-                            sortAscending: true,
-                            columns: [
-                              DataColumn( label: Text( "ID Nodo", style: TextStyle( fontSize: 15, color: Colors.white ),),),
-                              DataColumn( label: Text( "Temperatura", style: TextStyle( fontSize: 15, color: Colors.white ),), ),
-                              DataColumn( label: Text( "Humedad", style: TextStyle( fontSize: 15, color: Colors.white ),), ),
-                              DataColumn( label: Text( "Heat Index", style: TextStyle( fontSize: 15, color: Colors.white ),),),
-                              DataColumn( label: Text( "Fecha", style: TextStyle( fontSize: 15, color: Colors.white ),),),
-                              
-                            ], 
-                            rows: List<DataRow>.generate(
-                            snapshot.data.length,
-                            (index) => DataRow(cells: [
-                              DataCell(Text(snapshot.data[index].idnodo.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
-                              DataCell(Text(snapshot.data[index].temperatura.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
-                              DataCell(Text(snapshot.data[index].humedad.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
-                              DataCell(Text(snapshot.data[index].indiceCalor.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
-                              DataCell(Text(snapshot.data[index].fecha.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
-                            ])),
-                          ),
-                        );
+                return 
+                ListView(
+                  children: 
+                  [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        dividerThickness: 2,
+                        dataRowHeight: 50,
+                        headingRowHeight: 50,
+                        sortColumnIndex: 0,
+                        sortAscending: true,
+                        columns: [
+                          DataColumn( label: Text( "ID Nodo", style: TextStyle( fontSize: 15, color: Colors.white ),),),
+                          DataColumn( label: Text( "Voltaje", style: TextStyle( fontSize: 15, color: Colors.white ),), ),
+                          DataColumn( label: Text( "Corriente", style: TextStyle( fontSize: 15, color: Colors.white ),), ),
+                          DataColumn( label: Text( "P activa", style: TextStyle( fontSize: 15, color: Colors.white ),),),
+                          DataColumn( label: Text( "e activa", style: TextStyle( fontSize: 15, color: Colors.white ),),),
+                          DataColumn( label: Text( "Fecha", style: TextStyle( fontSize: 15, color: Colors.white ),),),
+                          
+                        ], 
+                        rows: List<DataRow>.generate(
+                        snapshot.data.length,
+                        (index) => DataRow(cells: [
+                          DataCell(Text(snapshot.data[index].idnodo.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                          DataCell(Text(snapshot.data[index].voltaje.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                          DataCell(Text(snapshot.data[index].corriente.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                          DataCell(Text(snapshot.data[index].pactiva.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                          DataCell(Text(snapshot.data[index].eactiva.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                          DataCell(Text(snapshot.data[index].horafecha.toString(), style: TextStyle( fontSize: 15, color: Colors.white ))),
+                        ])),
+                      ),
+                    ),
+                  ]
+                );
               }
               else if (snapshot.hasError){
                 print(snapshot.error);
@@ -206,19 +217,21 @@ class _InfoNodosState extends State<InfoNodos> {
 class Nodos {
 
   var idnodo;
-  var temperatura;
-  var humedad;
-  var indiceCalor;
-  var fecha;
+  var voltaje;
+  var corriente;
+  var pactiva;
+  var eactiva;
+  var horafecha;
 
 
-  Nodos(idnodo, temperatura,humedad,indiceCalor, fecha){
-  // Nodos(idnodo, fecha){
+  Nodos(idnodo, voltaje,corriente,pactiva,eactiva, horafecha){
+  // Nodos(idnodo, horafecha){
     this.idnodo=idnodo;
-    this.temperatura=temperatura;
-    this.humedad=humedad;
-    this.indiceCalor=indiceCalor;
-    this.fecha=fecha;
+    this.voltaje=voltaje;
+    this.corriente=corriente;
+    this.pactiva=pactiva;
+    this.eactiva=eactiva;
+    this.horafecha=horafecha;
   }
 
  

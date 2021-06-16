@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fpm/views/ruta.dart';
+import 'package:fpm/model/ruta.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -30,7 +30,7 @@ class _InfoAlertasState extends State<InfoAlertas> {
       
       String body= utf8.decode(response.bodyBytes);
       final jsonData= jsonDecode(body);
-      // print(jsonData);
+      print(jsonData);
       
       List<Alarmas> _lista=[];
       
@@ -188,8 +188,13 @@ class Alarmas {
 
   Alarmas(idnodo, alerta, fecha){
     this.idnodo=idnodo;
-    this.alerta=alerta;
     this.fecha=fecha;
+    if(alerta==null){
+      this.alerta=" No se registro alerta";
+    }
+    else{
+      this.alerta= alerta;
+    }
   }
 
  

@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[400],
+        backgroundColor: Colors.blue[900],
         centerTitle: true,
         title: appLogo,
         leading: new IconButton(

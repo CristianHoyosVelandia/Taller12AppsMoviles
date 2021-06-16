@@ -15,12 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Taller 12',
       initialRoute: '/SplashApp',
       routes: <String, WidgetBuilder>{
-          // '/kupi' : (BuildContext context) => Kupi(),
-          // '/login' : (BuildContext context) => SignInKupi(),
-          // '/home' : (BuildContext context) => KupiMenu(),
           '/SplashApp' : (BuildContext context) => Splash(),
           '/Login' : (BuildContext context) => Login(),
-          // '/tutorial': (BuildContext context) => Tutorial(),
       },
     );
   }

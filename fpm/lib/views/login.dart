@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fpm/views/sign_in.dart';
-// import 'package:kupi/User/bloc/user_bloc.dart';
-// import 'package:kupi/User/model/my_kupiapp.dart';
-// import 'package:kupi/User/model/my_user.dart';
-// import 'package:kupi/User/repository/personalizaciones.dart';
-// import 'package:kupi/User/ui/screen/registro_usuario.dart';
-// import 'package:kupi/User/ui/screen/sign_in_kupi.dart';
-// import 'package:kupi/data/database_helper.dart';
-// import 'package:kupi/kupi_menu.dart';
-// import 'package:kupi/widgets/progress_indicator.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -107,7 +98,7 @@ class _Login extends State<Login> {
                         margin: EdgeInsets.only(top: 20, bottom: 20),
                         child: Text(
                           "No tengo cuenta",
-                          style: TextStyle(color: Colors.blue, fontSize: 18),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                       
@@ -126,7 +117,7 @@ class _Login extends State<Login> {
                               ),
                             ),
                             onTap: () {
-                              //Navigator.push(context,MaterialPageRoute(builder: (context) => RegistroUsuario()));
+                              // Navigator.push(context,MaterialPageRoute(builder: (context) => RegistroUsuario()));
                             },
                           )
                       )
